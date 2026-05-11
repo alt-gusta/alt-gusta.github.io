@@ -16,6 +16,8 @@ const fadeObserver = new IntersectionObserver(
   { threshold: 0.08 }
 );
 
+const DEFAULT_PROJECT_IMAGE = 'data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360"><rect width="100%" height="100%" fill="%23111827"/><rect x="32" y="32" width="576" height="296" rx="16" fill="%231a2233"/><text x="50%" y="44%" fill="%2378bdf8" font-family="JetBrains%20Mono,monospace" font-size="28" text-anchor="middle">IMAGEM</text><text x="50%" y="58%" fill="%23647eaa" font-family="JetBrains%20Mono,monospace" font-size="18" text-anchor="middle">GENÉRICA</text></svg>';
+
 async function loadProjects() {
   const container = document.getElementById('projects-root');
   if (!container) return;
@@ -129,7 +131,12 @@ function buildCard(project) {
     ? `<a href="${project.links.demo}" target="_blank" rel="noopener">DEMO</a>`
     : '';
 
+  const imageSrc = project.image || DEFAULT_PROJECT_IMAGE;
+
   card.innerHTML = `
+    <div class="project-cover">
+      <img src="${imageSrc}" alt="Imagem do projeto ${project.title}" />
+    </div>
     <div class="project-title">${project.title}</div>
     <div class="project-desc">${project.desc}</div>
     <div class="project-chips">${chipsHtml}</div>

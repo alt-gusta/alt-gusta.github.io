@@ -1,58 +1,16 @@
 {
   "categories": [
+
     {
-      "id": "weblab",
-      "tag": "// WEB_LAB",
-      "label": "Web Lab · Cefet",
-      "desc": "Experimentos e exercícios práticos desenvolvidos durante a formação técnica no Cefet-MG.",
-      "projects": [
-        {
-          "title": "Calculadora de Bhaskara",
-          "desc": "Aplicação web para cálculo de equações do segundo grau, com manipulação dinâmica do DOM para exibição das raízes em tempo real.",
-          "chips": ["JavaScript", "DOM", "HTML"],
-          "links": {
-            "code": "https://github.com/alt-gusta/REPO_AQUI",
-            "demo": ""
-          }
-        },
-        {
-          "title": "EduKids (Jogo Interativo)",
-          "desc": "Jogo educativo com animações e feedback visual utilizando CSS transitions. Trabalha estados interativos dos elementos (fome, satisfação, raiva).",
-          "chips": ["HTML", "CSS", "Animações"],
-          "links": {
-            "code": "https://github.com/alt-gusta/REPO_AQUI",
-            "demo": ""
-          }
-        },
-        {
-          "title": "Super Loja (Responsivo)",
-          "desc": "Página de e-commerce responsiva utilizando media queries para adaptação de layout em diferentes dispositivos.",
-          "chips": ["CSS", "Responsividade", "Layout"],
-          "links": {
-            "code": "https://github.com/alt-gusta/REPO_AQUI",
-            "demo": ""
-          }
-        },
-        {
-          "title": "Site Abelhas (Multi-page)",
-          "desc": "Website com múltiplas páginas e navegação estruturada. Uso de CSS externo, layout com float e scripts simples para interatividade.",
-          "chips": ["HTML", "CSS", "JavaScript"],
-          "links": {
-            "code": "https://github.com/alt-gusta/REPO_AQUI",
-            "demo": ""
-          }
-        }
-      ]
-    },
-    {
-      "id": "pessoal",
-      "tag": "// PROJETO_PESSOAL",
-      "label": "Projetos Pessoais",
-      "desc": "Projetos construídos por iniciativa própria, fora do ambiente acadêmico.",
+      "id": "destaques",
+      "tag": "// PROJETO_DESTAQUES",
+      "label": "Projetos de Destaques",
+      "desc": "",
       "projects": [
         {
           "title": "Jogo da Memória (Java)",
           "desc": "Jogo da memória com interface gráfica desenvolvido em Java Swing. Possui modo contra IA e multiplayer local, com lógica de controle de estado e interação entre jogadores.",
+          "image": "imgs/jogo-da-memoria.png",
           "chips": ["Java", "Swing", "POO"],
           "links": {
             "code": "https://github.com/alt-gusta/REPO_AQUI",
@@ -62,10 +20,79 @@
         {
           "title": "Jogo da Velha 3",
           "desc": "Versão estratégica do jogo da velha onde cada jogador possui apenas 3 peças, podendo reposicioná-las após o início da partida. Foco em lógica de jogo e manipulação do DOM.",
-          "chips": ["HTML", "CSS", "JavaScript", "jQuery"],
+          "image": "imgs/jogo-da-velha.png",
+          "chips": ["HTML", "Bootstrap", "JavaScript", "jQuery"],
           "links": {
             "code": "https://github.com/alt-gusta/REPO_AQUI",
             "demo": "https://alt-gusta.github.io/REPO_AQUI"
+          }
+        }
+      ]
+    },
+    {
+      "id": "weblab",
+      "tag": "// WEB_LAB",
+      "label": "Web Lab · Cefet",
+      "desc": "Experimentos e exercícios práticos desenvolvidos durante a formação técnica no Cefet-MG.",
+      "projects": [
+        {
+          "title": "Exploração Espacial 👽",
+          "desc": "Página interativa com manipulação do DOM, gerenciamento de eventos, navegação de galeria de imagens e componentes expansíveis com CSS dinâmico.",
+          "image": "imgs/exploracao-espacial.png",
+          "chips": ["JavaScript", "DOM", "HTML"],
+          "links": {
+            "code": "https://github.com/alt-gusta/cefet-front-end-space",
+            "demo": "https://alt-gusta.github.io/cefet-front-end-space/"
+          }
+        },
+        {
+          "title": "Calculadora de Bhaskara 🧮",
+          "desc": "Aplicação web para cálculo de equações do segundo grau, com manipulação dinâmica do DOM para exibição das raízes em tempo real.",
+          "image":"imgs/calculadora-bhaskara.png",
+          "chips": ["JavaScript", "DOM", "HTML"],
+          "links": {
+            "code": "https://github.com/alt-gusta/cefet-front-end-math",
+            "demo": "https://alt-gusta.github.io/cefet-front-end-math/"
+          }
+        },
+        {
+          "title": "Super Loja📱(Responsivo)",
+          "desc": "Página de e-commerce responsiva utilizando media queries para adaptação de layout em diferentes dispositivos.",
+          "image": "imgs/super-loja.png",
+          "chips": ["CSS", "Responsividade", "Layout"],
+          "links": {
+            "code": "https://github.com/alt-gusta/cefet-front-end-store",
+            "demo": "https://alt-gusta.github.io/cefet-front-end-store/"
+          }
+        },
+        {
+          "title": "Blog Assombrado 👻 (Semântico)",
+          "desc": "Um blog focado em conteúdo sobre o desconhecido, mistério e tópicos sobrenaturais, com design temático apropriado.",
+          "image": "imgs/blog-assombrado.png",
+          "chips": ["HTML", "Semântica", "Layout"],
+          "links": {
+            "code": "https://github.com/alt-gusta/cefet-front-end-assombrado",
+            "demo": "https://alt-gusta.github.io/cefet-front-end-assombrado/"
+          }
+        },
+        {
+          "title": "Site Abelhas 🐝 (Multi-page)",
+          "desc": "Website com múltiplas páginas e navegação estruturada. Uso de CSS externo, layout com float e scripts simples para interatividade.",
+          "image": "imgs/site-abelhas.png",
+          "chips": ["HTML", "CSS", "JavaScript"],
+          "links": {
+            "code": "https://github.com/alt-gusta/cefet-front-end-bees",
+            "demo": "https://alt-gusta.github.io/cefet-front-end-bees/"
+          }
+        },
+        {
+          "title": "EduKids 🎮 (Jogo Interativo)",
+          "desc": "Jogo educativo com animações e feedback visual utilizando CSS transitions. Trabalha estados interativos dos elementos (fome, satisfação, raiva).",
+          "image": "imgs/edukids.png",
+          "chips": ["HTML", "CSS", "Animações"],
+          "links": {
+            "code": "https://github.com/alt-gusta/cefet-front-end-edukids",
+            "demo": "https://alt-gusta.github.io/cefet-front-end-edukids/"
           }
         }
       ]
