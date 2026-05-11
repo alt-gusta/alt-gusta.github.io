@@ -1,0 +1,74 @@
+{
+  "categories": [
+    {
+      "id": "weblab",
+      "tag": "// WEB_LAB",
+      "label": "Web Lab · Cefet",
+      "desc": "Experimentos e exercícios práticos desenvolvidos durante a formação técnica no Cefet-MG.",
+      "projects": [
+        {
+          "title": "Calculadora de Bhaskara",
+          "desc": "Aplicação web para cálculo de equações do segundo grau, com manipulação dinâmica do DOM para exibição das raízes em tempo real.",
+          "chips": ["JavaScript", "DOM", "HTML"],
+          "links": {
+            "code": "https://github.com/alt-gusta/REPO_AQUI",
+            "demo": ""
+          }
+        },
+        {
+          "title": "EduKids (Jogo Interativo)",
+          "desc": "Jogo educativo com animações e feedback visual utilizando CSS transitions. Trabalha estados interativos dos elementos (fome, satisfação, raiva).",
+          "chips": ["HTML", "CSS", "Animações"],
+          "links": {
+            "code": "https://github.com/alt-gusta/REPO_AQUI",
+            "demo": ""
+          }
+        },
+        {
+          "title": "Super Loja (Responsivo)",
+          "desc": "Página de e-commerce responsiva utilizando media queries para adaptação de layout em diferentes dispositivos.",
+          "chips": ["CSS", "Responsividade", "Layout"],
+          "links": {
+            "code": "https://github.com/alt-gusta/REPO_AQUI",
+            "demo": ""
+          }
+        },
+        {
+          "title": "Site Abelhas (Multi-page)",
+          "desc": "Website com múltiplas páginas e navegação estruturada. Uso de CSS externo, layout com float e scripts simples para interatividade.",
+          "chips": ["HTML", "CSS", "JavaScript"],
+          "links": {
+            "code": "https://github.com/alt-gusta/REPO_AQUI",
+            "demo": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "pessoal",
+      "tag": "// PROJETO_PESSOAL",
+      "label": "Projetos Pessoais",
+      "desc": "Projetos construídos por iniciativa própria, fora do ambiente acadêmico.",
+      "projects": [
+        {
+          "title": "Jogo da Memória (Java)",
+          "desc": "Jogo da memória com interface gráfica desenvolvido em Java Swing. Possui modo contra IA e multiplayer local, com lógica de controle de estado e interação entre jogadores.",
+          "chips": ["Java", "Swing", "POO"],
+          "links": {
+            "code": "https://github.com/alt-gusta/REPO_AQUI",
+            "demo": ""
+          }
+        },
+        {
+          "title": "Jogo da Velha 3",
+          "desc": "Versão estratégica do jogo da velha onde cada jogador possui apenas 3 peças, podendo reposicioná-las após o início da partida. Foco em lógica de jogo e manipulação do DOM.",
+          "chips": ["HTML", "CSS", "JavaScript", "jQuery"],
+          "links": {
+            "code": "https://github.com/alt-gusta/REPO_AQUI",
+            "demo": "https://alt-gusta.github.io/REPO_AQUI"
+          }
+        }
+      ]
+    }
+  ]
+}

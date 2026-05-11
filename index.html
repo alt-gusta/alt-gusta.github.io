@@ -1,51 +1,449 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Gustavo William - Desenvolvedor Full Stack</title>
-	<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Gustavo William · Técnico em Redes | Dev Full Stack</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/carousel.css">
 </head>
+
 <body>
-	<header>
-		<div class="titulo">
-			<h1>&lt;&#47;Gustavo William&gt;</h1>
-		</div>
-		<div>
-			<nav>
-				<ul>
-					<li><a href="#">Olá</a></li>
-					<li><a href="#">Sobre Mim</a></li>
-					<li><a href="#">Projetos</a></li>
-					<li><a href="#">Habilidades</a></li>
-					<li><a href="#">Contato</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
-	<main>
-		<section id="principal" class="principal">
-			<h1>Olá &#x1F44B;</h1>
-			<p>Sou desenvolvedor full stack em formação, com base sólida em redes de computadores e infraestrutura, recém-formado como técnico em Redes de Computadores, buscando a primeira oportunidade na área.</p>
 
-			<div class="acoes-header">
-				<button>Fale comigo</button>
-				<button><i class="fa-solid fa-download"></i> Baixe meu CV</button>
-			</div>
-		</section>
-		<section id="sobre" class="sobre">
+  <nav>
+    <a class="nav-logo" href="#hero">
+      &lt;Dev/&gt;
+      <span>// REDES &amp; DEV</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#projects">Projetos</a></li>
+      <li><a href="#background">Background</a></li>
+      <li><a href="#arsenal">Arsenal</a></li>
+      <li><a href="#learning">Aprendizado</a></li>
+      <li><a href="#connect">Contato</a></li>
+    </ul>
+    <div class="nav-cta-group">
+      <a class="nav-cta" href="#" download>↓ Currículo</a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
 
-		</section>
-		<section id="projetos" class="projetos">
+  <section id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <div class="badge-dot"></div> Open To Work
+      </div>
+      <h1 class="hero-title">
+        <div class="line-dim">Gustavo William</div>
+        <div class="line-accent">Técnico de Redes e Desenvolvedor</div>
+      </h1>
 
-		</section>
-		<section id="habilidades" class="habilidades">
+      <p class="hero-sub">
+        Técnico de Redes de Computadores focado em desenvolvimento full stack · Belo Horizonte, MG<span
+          class="cursor"></span>
+      </p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="#projects">Ver Projetos</a>
+        <a class="btn-ghost" href="#connect">Disponível para contratação</a>
+      </div>
+    </div>
+    <div class="tech-bar">
+      <span class="tech-pill">HTML &amp; CSS</span>
+      <span class="tech-pill">JAVASCRIPT</span>
+      <span class="tech-pill">PYTHON</span>
+      <span class="tech-pill">JAVA</span>
+      <span class="tech-pill">LINUX</span>
+      <span class="tech-pill">REDES</span>
+    </div>
+  </section>
 
-		</section>
-	</main>
-	<footer id="contato" class="contato">
+  <section id="stats">
+    <div class="stats-grid">
+      <div class="stat-card fade-up">
+        <div class="stat-value">10+</div>
+        <div class="stat-label">TECNOLOGIAS</div>
+        <div class="stat-desc">Linguagens e ferramentas</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-value">2+</div>
+        <div class="stat-label">ANOS_ESTUDANDO</div>
+        <div class="stat-desc">Redes e desenvolvimento</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-value">Full</div>
+        <div class="stat-label">STACK_GOAL</div>
+        <div class="stat-desc">TypeScript · React · Node</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-value">BH</div>
+        <div class="stat-label">LOCATION</div>
+        <div class="stat-desc">Belo Horizonte, MG</div>
+      </div>
+    </div>
+  </section>
 
-	</footer>
-	<script src="main.js"></script>
+<section id="projects">
+  <div id="projects-root">
+    <!-- Os carrosséis são injetados aqui pelo projects.js -->
+    <div class="projects-loading">
+      <span class="mono-dim">// carregando projetos...</span>
+    </div>
+  </div>
+</section>
+
+  <section id="background">
+    <div class="section-inner">
+      <div class="section-label">HISTÓRICO</div>
+      <h2 class="section-title">Background Técnico</h2>
+      <div class="timeline-wrap">
+        <!-- Experiência -->
+        <div>
+          <div class="timeline-col-title">
+            <div class="dot"></div> EXPERIÊNCIA
+          </div>
+          <div class="timeline-entry fade-up">
+            <div class="entry-date">EQUIPE DE COMPETIÇÃO</div>
+            <div class="entry-title">Capitão de Software</div>
+            <div class="entry-company">Flytec Drones</div>
+            <p class="entry-desc">Liderou a área de software de uma equipe de competição de drones. Realizou pesquisas
+              técnicas para viabilizar a construção de drones autônomos, coordenando soluções de software embarcado e
+              integração de sistemas.</p>
+            <div class="project-chips">
+              <span class="chip">Drones Autônomos</span>
+              <span class="chip">Software Embarcado</span>
+              <span class="chip">Liderança Técnica</span>
+              <span class="chip">Python</span>
+            </div>
+          </div>
+          <div class="timeline-entry fade-up faded">
+            <div class="entry-date">EM CONSTRUÇÃO</div>
+            <div class="entry-title">Próximas experiências</div>
+            <div class="entry-company">Aberto a oportunidades</div>
+            <p class="entry-desc">Buscando minha primeira oportunidade como desenvolvedor. Disponível para estágios,
+              projetos freelance e posições júnior.</p>
+          </div>
+        </div>
+
+        <!-- Formação -->
+        <div>
+          <div class="timeline-col-title">
+            <div class="dot green"></div> FORMAÇÃO &amp; APRENDIZADO
+          </div>
+          <div class="timeline-entry fade-up">
+            <div class="entry-date">EM ANDAMENTO</div>
+            <div class="entry-title">Curso Full Stack com TypeScript</div>
+            <div class="entry-company">Formação Profissional</div>
+            <p class="entry-desc">Formação completa em desenvolvimento Full Stack com TypeScript — superset de
+              JavaScript mantido pela Microsoft. Cobrindo OOP (Herança, Encapsulamento, Polimorfismo, Abstração), React
+              no front-end, Node.js + Express no back-end e desenvolvimento de APIs REST.</p>
+            <div class="project-chips">
+              <span class="chip">TypeScript</span>
+              <span class="chip">React</span>
+              <span class="chip">Node.js</span>
+              <span class="chip">Express</span>
+              <span class="chip">API REST</span>
+              <span class="chip">OOP</span>
+            </div>
+          </div>
+          <div class="timeline-entry fade-up">
+            <div class="entry-date">FORMAÇÃO TÉCNICA</div>
+            <div class="entry-title">Técnico em Redes de Computadores</div>
+            <div class="entry-company">Educação Técnica</div>
+            <p class="entry-desc">Fundação sólida em infraestrutura de redes, protocolos TCP/IP, administração Linux e
+              configuração de equipamentos de rede.</p>
+            <div class="project-chips">
+              <span class="chip">TCP/IP</span>
+              <span class="chip">Linux</span>
+              <span class="chip">Redes</span>
+              <span class="chip">VirtualBox</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- ══════════════ ARSENAL ══════════════ -->
+  <section id="arsenal">
+    <div class="section-inner">
+      <div class="section-label">HABILIDADES TÉCNICAS</div>
+      <h2 class="section-title">Arsenal Técnico</h2>
+      <div class="arsenal-grid">
+        <div class="skill-card fade-up">
+          <div class="skill-icon">🌐</div>
+          <div class="skill-name">HTML</div>
+          <div class="skill-level">FRONT-END</div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon">🎨</div>
+          <div class="skill-name">CSS</div>
+          <div class="skill-level">FRONT-END</div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon">⚡</div>
+          <div class="skill-name">JavaScript</div>
+          <div class="skill-level">FRONT-END / BACK</div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon">☕</div>
+          <div class="skill-name">Java</div>
+          <div class="skill-level">POO</div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon">🔵</div>
+          <div class="skill-name">TypeScript</div>
+          <div class="skill-level">EM APRENDIZADO</div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon">🐍</div>
+          <div class="skill-name">Python</div>
+          <div class="skill-level">SCRIPTING</div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon">⚙️</div>
+          <div class="skill-name">C</div>
+          <div class="skill-level">FUNDAMENTOS</div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon">🐧</div>
+          <div class="skill-name">Linux</div>
+          <div class="skill-level">AVANÇADO</div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon">🌐</div>
+          <div class="skill-name">Redes</div>
+          <div class="skill-level">TÉCNICO</div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon">📦</div>
+          <div class="skill-name">VirtualBox</div>
+          <div class="skill-level">VIRTUALIZAÇÃO</div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon">🐳</div>
+          <div class="skill-name">Canonical LXD</div>
+          <div class="skill-level">CONTAINERS</div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon">🔀</div>
+          <div class="skill-name">Git</div>
+          <div class="skill-level">VERSIONAMENTO</div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon">🐙</div>
+          <div class="skill-name">GitHub</div>
+          <div class="skill-level">REPOSITÓRIOS</div>
+        </div>
+        <div class="skill-card fade-up faded">
+          <div class="skill-icon">⚛️</div>
+          <div class="skill-name">React</div>
+          <div class="skill-level">EM BREVE</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ LEARNING ══════════════ -->
+  <section id="learning">
+    <div class="section-inner">
+      <div class="section-label">CRESCIMENTO CONTÍNUO</div>
+      <h2 class="section-title">O que Estou Aprendendo</h2>
+
+      <div class="learning-split">
+        <div class="focus-card blue fade-up">
+          <div class="focus-label">&gt; CURSO_FULLSTACK</div>
+          <h3 class="focus-title">TypeScript Full Stack</h3>
+          <div class="progress-wrap">
+            <div class="progress-row">
+              <span>Progresso do curso</span>
+              <span style="color:var(--blue)">Em andamento</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width:40%"></div>
+            </div>
+          </div>
+          <div class="topics">
+            <span class="topic">TypeScript</span>
+            <span class="topic">React</span>
+            <span class="topic">Node.js</span>
+            <span class="topic">Express</span>
+            <span class="topic">API REST</span>
+            <span class="topic">OOP</span>
+          </div>
+        </div>
+
+        <div class="focus-card red fade-up">
+          <div class="focus-label">&gt; AREA_DE_INTERESSE</div>
+          <h3 class="focus-title">Redes &amp; Infraestrutura</h3>
+          <div class="progress-wrap">
+            <div class="progress-row">
+              <span>Fundação técnica</span>
+              <span style="color:var(--red)">Sólida</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width:75%"></div>
+            </div>
+          </div>
+          <div class="topics">
+            <span class="topic">TCP/IP</span>
+            <span class="topic">Linux</span>
+            <span class="topic">VirtualBox</span>
+            <span class="topic">LXD</span>
+            <span class="topic">Protocolos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Roadmap -->
+      <div class="roadmap-title">// ROADMAP_DE_APRENDIZADO</div>
+      <div class="roadmap">
+        <div class="roadmap-step done">
+          <div class="step-label">✓ CONCLUÍDO</div>
+          <div class="step-name">Técnico em Redes</div>
+          <div class="step-desc">TCP/IP, protocolos, Linux, VirtualBox, LXD e infraestrutura de redes.</div>
+        </div>
+        <div class="roadmap-step done">
+          <div class="step-label">✓ CONCLUÍDO</div>
+          <div class="step-name">Fundamentos de Programação</div>
+          <div class="step-desc">HTML, CSS, JavaScript, Java e C — bases sólidas da lógica e da web.</div>
+        </div>
+        <div class="roadmap-step done">
+          <div class="step-label">✓ EXPERIÊNCIA</div>
+          <div class="step-name">Flytec Drones</div>
+          <div class="step-desc">Capitão de software em equipe de competição — pesquisa e desenvolvimento de drones
+            autônomos.</div>
+        </div>
+        <div class="roadmap-step now">
+          <div class="step-label">● EM ANDAMENTO <span class="now-badge">AGORA</span></div>
+          <div class="step-name">Full Stack com TypeScript</div>
+          <div class="step-desc">TypeScript, React, Node.js, Express, APIs REST e OOP — rumo ao Full Stack.</div>
+        </div>
+        <div class="roadmap-step next">
+          <div class="step-label">○ PRÓXIMO</div>
+          <div class="step-name">Projetos &amp; Portfólio</div>
+          <div class="step-desc">Construir projetos reais com as tecnologias aprendidas e publicar no GitHub.</div>
+        </div>
+        <div class="roadmap-step next">
+          <div class="step-label">○ OBJETIVO</div>
+          <div class="step-name">Primeira Oportunidade Dev</div>
+          <div class="step-desc">Estágio ou posição júnior como desenvolvedor Full Stack.</div>
+        </div>
+      </div>
+
+      <!-- Resources -->
+      <div class="resources-grid">
+        <div class="resource-card fade-up">
+          <div class="resource-head">
+            <div class="resource-icon blue-bg">🎓</div>
+            <div class="resource-title">Curso em Andamento</div>
+          </div>
+          <ul class="resource-list">
+            <li><span class="ri" style="color:var(--green);animation:pulse-dot 2s infinite">●</span><span
+                style="color:var(--text)">Full Stack com TypeScript</span></li>
+            <li><span class="ri-dim">→</span>TypeScript, React, Node.js</li>
+            <li><span class="ri-dim">→</span>Express &amp; API REST</li>
+            <li><span class="ri-dim">→</span>POO: Herança, Polimorfismo, Abstração</li>
+          </ul>
+        </div>
+        <div class="resource-card fade-up">
+          <div class="resource-head">
+            <div class="resource-icon purple-bg">📚</div>
+            <div class="resource-title">O que já sei</div>
+          </div>
+          <ul class="resource-list">
+            <li><span class="ri">✓</span>HTML &amp; CSS</li>
+            <li><span class="ri">✓</span>JavaScript (ES6+)</li>
+            <li><span class="ri">✓</span>Java &amp; POO</li>
+            <li><span class="ri">✓</span>Python &amp; C</li>
+            <li><span class="ri">✓</span>Linux &amp; Redes</li>
+          </ul>
+        </div>
+        <div class="resource-card fade-up">
+          <div class="resource-head">
+            <div class="resource-icon green-bg">🖥️</div>
+            <div class="resource-title">Ambiente de Estudo</div>
+          </div>
+          <div class="homelab-grid cols-2">
+            <div class="hl-cell">
+              <div class="hl-key">VM</div>
+              <div class="hl-val">VirtualBox</div>
+            </div>
+            <div class="hl-cell">
+              <div class="hl-key">CONTAINERS</div>
+              <div class="hl-val">LXD</div>
+            </div>
+            <div class="hl-cell">
+              <div class="hl-key">OS</div>
+              <div class="hl-val">Linux</div>
+            </div>
+            <div class="hl-cell">
+              <div class="hl-key">EDITOR</div>
+              <div class="hl-val">VS Code</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ CONNECT ══════════════ -->
+  <section id="connect">
+    <div class="grid-bg"></div>
+    <div class="connect-inner">
+      <div class="section-label" style="justify-content:center">INICIAR CONEXÃO</div>
+      <h2 class="connect-title">Vamos conversar.</h2>
+      <p class="connect-sub">Tem um projeto, uma oportunidade ou só quer trocar uma ideia sobre tecnologia? Estou
+        disponível!</p>
+      <div class="form-field">
+        <label class="form-label" for="email">&gt; SEU_EMAIL</label>
+        <input class="form-input" id="email" placeholder="voce@exemplo.com" type="email" />
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="message">&gt; SUA_MENSAGEM</label>
+        <textarea class="form-textarea" id="message" placeholder="Olá, Gustavo! Queria conversar sobre..."></textarea>
+      </div>
+      <button class="btn-send" type="button">ENVIAR_MENSAGEM()</button>
+
+      <div class="social-row">
+        <a class="social-link" href="https://github.com/alt-gusta" target="_blank" title="GitHub">
+          <svg viewBox="0 0 24 24">
+            <path clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+              fill-rule="evenodd" />
+          </svg>
+        </a>
+        <a class="social-link" href="https://www.linkedin.com/in/gustavowilliamgs/" target="_blank" title="LinkedIn">
+          <svg viewBox="0 0 24 24">
+            <path clip-rule="evenodd"
+              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+              fill-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer>
+    <div class="footer-left"><strong>Gustavo William</strong> · Técnico em Redes | Dev Full Stack · © 2026</div>
+    <div class="footer-right" style="font-family:var(--mono);font-size:.65rem">// BELO_HORIZONTE, MG</div>
+  </footer>
+
+  <script src="scripts/main.js" defer></script>
+  <script src="scripts/projects.js" defer></script>
+  <script src="scripts/main.js" defer></script>
 </body>
+
 </html>
