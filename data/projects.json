@@ -13,7 +13,7 @@
           "image": "imgs/jogo-da-memoria.png",
           "chips": ["Java", "Swing", "POO"],
           "links": {
-            "code": "https://github.com/alt-gusta/REPO_AQUI",
+            "code": "https://github.com/alt-gusta/Jogo-da-Velha-3",
             "demo": "https://alt-gusta.github.io/Jogo-da-Velha-3/"
           }
         },

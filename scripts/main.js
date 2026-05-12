@@ -40,29 +40,84 @@ document.addEventListener('DOMContentLoaded', () => {
   // Hamburger menu toggle
   const hamburger = document.getElementById('hamburger');
   const navLinksMenu = document.getElementById('navLinks');
+  const navToggle = document.getElementById('navToggle');
 
-  if (hamburger && navLinksMenu) {
-    hamburger.addEventListener('click', () => {
-      navLinksMenu.classList.toggle('open');
-    });
+  function setNavOpen(open) {
+    if (!navLinksMenu) return;
+    navLinksMenu.classList.toggle('open', open);
+    if (hamburger) {
+      hamburger.setAttribute('aria-expanded', open);
+      hamburger.classList.toggle('open', open);
+    }
+    if (navToggle) navToggle.setAttribute('aria-expanded', open);
+    // expose state for assistive tech
+    navLinksMenu.setAttribute('aria-hidden', String(!open));
   }
 
-  // Form submission simulation
-  const sendButton = document.querySelector('.btn-send');
-  if (sendButton) {
-    sendButton.addEventListener('click', function() {
-      const originalText = this.textContent;
-      const originalBg = this.style.background;
+  if (hamburger && navLinksMenu) {
+    hamburger.addEventListener('click', () => setNavOpen(!navLinksMenu.classList.contains('open')));
+    // keyboard support
+    hamburger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setNavOpen(!navLinksMenu.classList.contains('open'));
+      }
+    });
+  }
+  if (navToggle && navLinksMenu) {
+    navToggle.addEventListener('click', () => setNavOpen(!navLinksMenu.classList.contains('open')));
+  }
 
-      this.textContent = 'MENSAGEM_ENVIADA ✓';
-      this.style.background = 'var(--green-dim)';
+  // Close menu when link clicked (mobile)
+  navLinksMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setNavOpen(false)));
+
+  // Close on ESC
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setNavOpen(false); });
+
+  // Form submission simulation
+  // Form submission: validation + mailto fallback
+  const sendButton = document.querySelector('.btn-send');
+  const formFeedback = document.getElementById('formFeedback');
+  if (sendButton) {
+    sendButton.addEventListener('click', function () {
+      const emailInput = document.getElementById('email');
+      const messageInput = document.getElementById('message');
+      const email = emailInput ? emailInput.value.trim() : '';
+      const message = messageInput ? messageInput.value.trim() : '';
+
+      function showFeedback(msg, ok = false) {
+        if (formFeedback) formFeedback.textContent = msg;
+        if (ok) {
+          formFeedback.style.color = 'var(--green)';
+        } else {
+          formFeedback.style.color = 'var(--red)';
+        }
+      }
+
+      if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+        showFeedback('Por favor, insira um e-mail válido.');
+        return;
+      }
+      if (!message || message.length < 8) {
+        showFeedback('Mensagem muito curta. Escreva pelo menos 8 caracteres.');
+        return;
+      }
+
+      const originalText = this.textContent;
+      this.textContent = 'ENVIANDO...';
       this.disabled = true;
+
+      // Fallback: abrir cliente de e-mail com subject/body (sem destinatário configurado)
+      const subject = encodeURIComponent('Contato via portfólio');
+      const body = encodeURIComponent(`De: ${email}\n\n${message}`);
+      // Sem destinatário para permitir abrir o cliente do usuário — ajuste se quiser um email direto
+      window.location.href = `mailto:?subject=${subject}&body=${body}`;
 
       setTimeout(() => {
         this.textContent = originalText;
-        this.style.background = originalBg;
         this.disabled = false;
-      }, 2500);
+        showFeedback('A janela do seu cliente de e-mail foi aberta.', true);
+      }, 1200);
     });
   }
 });

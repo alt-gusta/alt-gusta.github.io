@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alt-gusta.github.io/sitemap.xml

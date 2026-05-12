@@ -124,18 +124,18 @@ function buildCard(project) {
     .join('');
 
   const codeLink = project.links.code
-    ? `<a href="${project.links.code}" target="_blank" rel="noopener">CODE</a>`
+    ? `<a href="${project.links.code}" target="_blank" rel="noopener noreferrer" aria-label="Abrir código do ${project.title}">CODE</a>`
     : '';
 
   const demoLink = project.links.demo
-    ? `<a href="${project.links.demo}" target="_blank" rel="noopener">DEMO</a>`
+    ? `<a href="${project.links.demo}" target="_blank" rel="noopener noreferrer" aria-label="Abrir demo do ${project.title}">DEMO</a>`
     : '';
 
   const imageSrc = project.image || DEFAULT_PROJECT_IMAGE;
 
   card.innerHTML = `
     <div class="project-cover">
-      <img src="${imageSrc}" alt="Imagem do projeto ${project.title}" />
+      <img src="${imageSrc}" alt="${project.title} — imagem" loading="lazy" decoding="async" />
     </div>
     <div class="project-title">${project.title}</div>
     <div class="project-desc">${project.desc}</div>
