@@ -35,11 +35,23 @@ async function loadProjects() {
 
   container.innerHTML = '';
 
+  // build carousels
   data.categories.forEach(category => {
     const section = buildCarousel(category);
     container.appendChild(section);
     initializeCarousel(section);
   });
+
+  // collect chips and attach data attributes to cards
+  const uniqueChips = new Set();
+  container.querySelectorAll('.project-card').forEach(card => {
+    const chips = Array.from(card.querySelectorAll('.chip')).map(c => c.textContent.trim().toLowerCase());
+    card.setAttribute('data-chips', chips.join(','));
+    chips.forEach(c => uniqueChips.add(c));
+  });
+
+  // inject filter UI
+  if (uniqueChips.size > 0) createFilterUI(container, Array.from(uniqueChips).sort());
 }
 
 /* ── Constrói o bloco completo de um carrossel ── */
@@ -144,6 +156,36 @@ function buildCard(project) {
   `;
 
   return card;
+}
+
+function createFilterUI(container, chips) {
+  const bar = document.createElement('div');
+  bar.className = 'filter-bar';
+  bar.innerHTML = `<button class="filter-btn active" data-filter="all">Todos</button>` + chips.map(c => ` <button class="filter-btn" data-filter="${c}">${c}</button>`).join('');
+  container.prepend(bar);
+
+  bar.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      bar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      filterProjectCards(container, filter);
+    });
+  });
+}
+
+function filterProjectCards(container, filter) {
+  const sections = container.querySelectorAll('.carousel-section');
+  sections.forEach(sec => {
+    let anyVisible = false;
+    sec.querySelectorAll('.project-card').forEach(card => {
+      const chips = card.getAttribute('data-chips') || '';
+      const show = filter === 'all' ? true : chips.split(',').includes(filter);
+      card.style.display = show ? '' : 'none';
+      if (show) anyVisible = true;
+    });
+    sec.style.display = anyVisible ? '' : 'none';
+  });
 }
 
 function getCarouselMetrics(track) {

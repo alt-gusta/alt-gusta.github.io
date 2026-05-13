@@ -45,6 +45,7 @@
     </ul>
     <div class="nav-cta-group">
       <a class="nav-cta" href="docs/curriculo-gustavo_william.pdf" download>↓ Currículo</a>
+      <button id="themeToggle" class="nav-cta" aria-pressed="false" title="Alternar tema (claro/escuro)">Tema</button>
       <div class="hamburger" id="hamburger" role="button" aria-label="Abrir menu" aria-expanded="false" tabindex="0">
         <span></span><span></span><span></span>
       </div>
@@ -90,9 +91,9 @@
   <section id="stats">
     <div class="stats-grid">
       <div class="stat-card fade-up">
-        <div class="stat-value">10+</div>
-        <div class="stat-label">TECNOLOGIAS</div>
-        <div class="stat-desc">Linguagens e ferramentas</div>
+        <div class="stat-value" id="reposCount">--</div>
+        <div class="stat-label">REPOSITÓRIOS</div>
+        <div class="stat-desc">Repositórios públicos no GitHub</div>
       </div>
       <div class="stat-card fade-up">
         <div class="stat-value">2+</div>
@@ -114,8 +115,9 @@
 
 <section id="projects">
   <div id="projects-root">
-    <!-- Os carrosséis são injetados aqui pelo projects.js -->
+    <!-- Filtro de projetos será injetado aqui pelo projects.js -->
     <div class="projects-loading">
+      <div class="spinner" aria-hidden="true"></div>
       <span class="mono-dim">// carregando projetos...</span>
     </div>
   </div>

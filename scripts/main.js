@@ -120,4 +120,50 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 1200);
     });
   }
+
+  // Theme toggle (dark / light) with prefers-color-scheme and persistence
+  const themeToggle = document.getElementById('themeToggle');
+  function applyTheme(theme) {
+    if (theme === 'light') document.documentElement.classList.add('light-theme');
+    else document.documentElement.classList.remove('light-theme');
+    if (themeToggle) themeToggle.setAttribute('aria-pressed', String(theme === 'light'));
+    try { localStorage.setItem('theme', theme); } catch (e) {}
+  }
+
+  const savedTheme = (() => { try { return localStorage.getItem('theme'); } catch (e) { return null; } })();
+  if (savedTheme) applyTheme(savedTheme);
+  else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) applyTheme('light');
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const now = document.documentElement.classList.contains('light-theme') ? 'light' : 'dark';
+      applyTheme(now === 'light' ? 'dark' : 'light');
+    });
+  }
+
+  // GitHub stats: fetch public repos count and animate
+  const reposCountEl = document.getElementById('reposCount');
+  function animateCount(el, to) {
+    const start = 0;
+    const duration = 800;
+    const startTime = performance.now();
+    function tick(now) {
+      const progress = Math.min(1, (now - startTime) / duration);
+      const value = Math.floor(progress * (to - start) + start);
+      el.textContent = value;
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = to;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  if (reposCountEl) {
+    fetch('https://api.github.com/users/alt-gusta')
+      .then(res => res.ok ? res.json() : Promise.reject(res.status))
+      .then(data => {
+        const count = data.public_repos || 0;
+        animateCount(reposCountEl, count);
+      })
+      .catch(() => { reposCountEl.textContent = '—'; });
+  }
 });
