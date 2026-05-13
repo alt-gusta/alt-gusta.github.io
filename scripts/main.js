@@ -126,8 +126,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function applyTheme(theme) {
     if (theme === 'light') document.documentElement.classList.add('light-theme');
     else document.documentElement.classList.remove('light-theme');
-    if (themeToggle) themeToggle.setAttribute('aria-pressed', String(theme === 'light'));
-    try { localStorage.setItem('theme', theme); } catch (e) {}
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-pressed', String(theme === 'light'));
+      themeToggle.textContent = theme === 'light' ? '☀️' : '🌙';
+    }
+    try { localStorage.setItem('theme', theme); } catch (e) { }
   }
 
   const savedTheme = (() => { try { return localStorage.getItem('theme'); } catch (e) { return null; } })();
@@ -141,29 +144,121 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // GitHub stats: fetch public repos count and animate
-  const reposCountEl = document.getElementById('reposCount');
-  function animateCount(el, to) {
+  // GitHub stats: advanced metrics (commits, lines of code, PRs)
+  // Helper function to format numbers like social media (K, M)
+  function formatNumber(num) {
+    if (num >= 1000000) {
+      return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+    }
+    if (num >= 1000) {
+      return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+    }
+    return num.toString();
+  }
+
+  function animateCount(el, to, format = 'number') {
     const start = 0;
     const duration = 800;
     const startTime = performance.now();
     function tick(now) {
       const progress = Math.min(1, (now - startTime) / duration);
       const value = Math.floor(progress * (to - start) + start);
-      el.textContent = value;
+      
+      let displayValue = value;
+      if (format === 'number') displayValue = formatNumber(value);
+      else if (format === 'hours') displayValue = formatNumber(value) + 'h';
+      
+      el.textContent = displayValue;
+      
       if (progress < 1) requestAnimationFrame(tick);
-      else el.textContent = to;
+      else {
+        let finalValue = to;
+        if (format === 'number') finalValue = formatNumber(to);
+        else if (format === 'hours') finalValue = formatNumber(to) + 'h';
+        el.textContent = finalValue;
+      }
     }
     requestAnimationFrame(tick);
   }
 
-  if (reposCountEl) {
-    fetch('https://api.github.com/users/alt-gusta')
-      .then(res => res.ok ? res.json() : Promise.reject(res.status))
-      .then(data => {
-        const count = data.public_repos || 0;
-        animateCount(reposCountEl, count);
-      })
-      .catch(() => { reposCountEl.textContent = '—'; });
+  async function fetchGitHubStats() {
+    try {
+      // Fetch user repos
+      const reposRes = await fetch('https://api.github.com/users/alt-gusta/repos?per_page=100');
+      if (!reposRes.ok) throw new Error('Failed to fetch repos');
+      const repos = await reposRes.json();
+
+      let totalCommits = 0;
+      let totalSize = 0;
+      let totalPRs = 0;
+
+      // Process each repo
+      for (const repo of repos) {
+        // Get commits count for this repo
+        try {
+          const commitsRes = await fetch(`https://api.github.com/repos/alt-gusta/${repo.name}/commits?per_page=1`);
+          if (commitsRes.ok) {
+            const link = commitsRes.headers.get('link');
+            if (link) {
+              const matches = link.match(/&page=(\d+)>; rel="last"/);
+              if (matches) totalCommits += parseInt(matches[1], 10);
+            } else {
+              totalCommits += 1; // At least 1 commit
+            }
+          }
+        } catch (e) { }
+
+        // Accumulate size (in KB)
+        totalSize += repo.size || 0;
+
+        // Count PRs (approximation from open_issues_count if repo has PRs enabled)
+        if (repo.open_issues_count) totalPRs += Math.floor(repo.open_issues_count * 0.3); // rough estimate
+      }
+
+      // Approximate lines of code: size in KB * average lines per KB
+      const estimatedLines = Math.floor(totalSize * 50); // rough: ~50 lines per KB
+
+      // Update DOM
+      const commitsEl = document.getElementById('commitsCount');
+      const linesEl = document.getElementById('linesCount');
+      const prsEl = document.getElementById('prsCount');
+
+      if (commitsEl) animateCount(commitsEl, totalCommits);
+      if (linesEl) animateCount(linesEl, estimatedLines);
+      if (prsEl) animateCount(prsEl, repos.length + totalPRs); // repos count + estimated PRs
+    } catch (err) {
+      console.error('GitHub stats error:', err);
+      document.getElementById('commitsCount') && (document.getElementById('commitsCount').textContent = '—');
+      document.getElementById('linesCount') && (document.getElementById('linesCount').textContent = '—');
+      document.getElementById('prsCount') && (document.getElementById('prsCount').textContent = '—');
+    }
   }
+
+  async function fetchWakatiStats() {
+    try {
+      // Wakatime API (public stats, no auth needed for public profiles)
+      // Replace with actual Wakatime username if available
+      const wakatiRes = await fetch('https://wakatime.com/api/v1/users/current/stats/all_time?range=last_7_days', {
+        headers: { 'Authorization': 'Bearer ' + (window.WAKATIME_API_KEY || '') }
+      });
+
+      if (wakatiRes.ok) {
+        const data = await wakatiRes.json();
+        const hours = data.data?.total_seconds ? Math.floor(data.data.total_seconds / 3600) : 0;
+        const hoursEl = document.getElementById('hoursCount');
+        if (hoursEl) animateCount(hoursEl, hours, 'hours');
+      }
+    } catch (err) {
+      // Wakatime is optional, so we just fallback
+      const hoursEl = document.getElementById('hoursCount');
+      if (hoursEl) hoursEl.textContent = '—';
+    }
+  }
+
+  // Load GitHub stats on page load
+  fetchGitHubStats();
+
+  // Try to load Wakatime stats (optional)
+  // Uncomment and set window.WAKATIME_API_KEY if you want to enable it
+  // fetchWakatiStats();
 });

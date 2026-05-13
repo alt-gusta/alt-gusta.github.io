@@ -45,7 +45,7 @@
     </ul>
     <div class="nav-cta-group">
       <a class="nav-cta" href="docs/curriculo-gustavo_william.pdf" download>↓ Currículo</a>
-      <button id="themeToggle" class="nav-cta" aria-pressed="false" title="Alternar tema (claro/escuro)">Tema</button>
+      <button id="themeToggle" class="theme-toggle" aria-pressed="false" title="Alternar entre tema claro e escuro">🌙</button>
       <div class="hamburger" id="hamburger" role="button" aria-label="Abrir menu" aria-expanded="false" tabindex="0">
         <span></span><span></span><span></span>
       </div>
@@ -91,33 +91,32 @@
   <section id="stats">
     <div class="stats-grid">
       <div class="stat-card fade-up">
-        <div class="stat-value" id="reposCount">--</div>
-        <div class="stat-label">REPOSITÓRIOS</div>
-        <div class="stat-desc">Repositórios públicos no GitHub</div>
+        <div class="stat-value" id="commitsCount">—</div>
+        <div class="stat-label">COMMITS</div>
+        <div class="stat-desc">No GitHub</div>
       </div>
       <div class="stat-card fade-up">
-        <div class="stat-value">2+</div>
-        <div class="stat-label">ANOS_ESTUDANDO</div>
-        <div class="stat-desc">Redes e desenvolvimento</div>
+        <div class="stat-value" id="linesCount">—</div>
+        <div class="stat-label">LINHAS ESCRITAS</div>
+        <div class="stat-desc">Aproximado</div>
       </div>
       <div class="stat-card fade-up">
-        <div class="stat-value">Full</div>
-        <div class="stat-label">STACK_GOAL</div>
-        <div class="stat-desc">TypeScript · React · Node</div>
+        <div class="stat-value" id="prsCount">—</div>
+        <div class="stat-label">PULL REQUESTS</div>
+        <div class="stat-desc">Contribuições no GitHub</div>
       </div>
       <div class="stat-card fade-up">
-        <div class="stat-value">BH</div>
-        <div class="stat-label">LOCATION</div>
-        <div class="stat-desc">Belo Horizonte, MG</div>
+        <div class="stat-value" id="hoursCount">—</div>
+        <div class="stat-label">HORAS DE ESTUDO</div>
+        <div class="stat-desc">Rastreadas com Wakatime</div>
       </div>
     </div>
   </section>
 
 <section id="projects">
   <div id="projects-root">
-    <!-- Filtro de projetos será injetado aqui pelo projects.js -->
+    <!-- Os carrosséis são injetados aqui pelo projects.js -->
     <div class="projects-loading">
-      <div class="spinner" aria-hidden="true"></div>
       <span class="mono-dim">// carregando projetos...</span>
     </div>
   </div>
