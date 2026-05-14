@@ -1,0 +1,65 @@
+name: Update GitHub Stats
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Atualizar stats a cada dia às 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install cloc
+        run: sudo apt-get install -y cloc
+
+      - name: Count lines of code
+        run: |
+          LINES=$(cloc . --json --exclude-dir=.git,.github,node_modules,dist,build --quiet | jq '.total.code')
+          echo "LINES_OF_CODE=$LINES" >> $GITHUB_ENV
+
+      - name: Get commits count
+        run: |
+          COMMITS=$(git rev-list --count HEAD)
+          echo "COMMITS=$COMMITS" >> $GITHUB_ENV
+
+      - name: Fetch additional GitHub stats
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Total de repositórios públicos
+          REPOS=$(gh api user --jq '.public_repos')
+          echo "REPOS=$REPOS" >> $GITHUB_ENV
+          
+          # Contar PRs (aproximado)
+          PRS=$(gh api user/repos --paginate --jq 'map(.open_issues_count // 0) | add' 2>/dev/null || echo "0")
+          echo "PRS=$PRS" >> $GITHUB_ENV
+
+      - name: Generate stats JSON
+        run: |
+          cat > public/stats.json << 'EOF'
+          {
+            "commits": ${{ env.COMMITS }},
+            "lines": ${{ env.LINES_OF_CODE }},
+            "repos": ${{ env.REPOS }},
+            "prs": ${{ env.PRS }},
+            "updated": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          }
+          EOF
+
+      - name: Commit and push stats
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add public/stats.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update stats" && git push)
