@@ -21,33 +21,59 @@ jobs:
           fetch-depth: 0
 
       - name: Install cloc
-        run: sudo apt-get install -y cloc
+        run: sudo apt-get install -y cloc jq
 
-      - name: Count lines of code
+      - name: Count lines of code across all public repos
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          LINES=$(cloc . --json --exclude-dir=.git,.github,node_modules,dist,build --quiet | jq '.total.code')
+          mkdir -p repos_to_count
+          cd repos_to_count
+          # Clone all public repos for the user
+          gh repo list alt-gusta --public -L 100 --json url --jq '.[].url' | while read -r url; do
+            git clone --depth 1 "$url" || true
+          done
+          cd ..
+          
+          # Count lines of code
+          LINES=$(cloc repos_to_count --json --exclude-dir=.git,.github,node_modules,dist,build,vendor --quiet | jq '.total.code')
+          if [ -z "$LINES" ] || [ "$LINES" == "null" ]; then LINES=0; fi
           echo "LINES_OF_CODE=$LINES" >> $GITHUB_ENV
-
-      - name: Get commits count
-        run: |
-          COMMITS=$(git rev-list --count HEAD)
-          echo "COMMITS=$COMMITS" >> $GITHUB_ENV
 
       - name: Fetch additional GitHub stats
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Total de repositórios públicos
-          REPOS=$(gh api user --jq '.public_repos')
-          echo "REPOS=$REPOS" >> $GITHUB_ENV
+          # Obter commits totais via GraphQL
+          COMMITS=$(gh api graphql -F username=alt-gusta -f query='
+            query($username: String!) {
+              user(login: $username) {
+                contributionsCollection {
+                  totalCommitContributions
+                }
+              }
+            }' --jq '.data.user.contributionsCollection.totalCommitContributions')
+          echo "COMMITS=${COMMITS:-0}" >> $GITHUB_ENV
           
-          # Contar PRs (aproximado)
-          PRS=$(gh api user/repos --paginate --jq 'map(.open_issues_count // 0) | add' 2>/dev/null || echo "0")
-          echo "PRS=$PRS" >> $GITHUB_ENV
+          # Total de repositórios públicos
+          REPOS=$(gh api users/alt-gusta --jq '.public_repos')
+          echo "REPOS=${REPOS:-0}" >> $GITHUB_ENV
+          
+          # Contar PRs via GraphQL
+          PRS=$(gh api graphql -F username=alt-gusta -f query='
+            query($username: String!) {
+              user(login: $username) {
+                pullRequests(first: 1) {
+                  totalCount
+                }
+              }
+            }' --jq '.data.user.pullRequests.totalCount')
+          echo "PRS=${PRS:-0}" >> $GITHUB_ENV
 
       - name: Generate stats JSON
         run: |
-          cat > public/stats.json << 'EOF'
+          mkdir -p public
+          cat > public/stats.json << EOF
           {
             "commits": ${{ env.COMMITS }},
             "lines": ${{ env.LINES_OF_CODE }},
